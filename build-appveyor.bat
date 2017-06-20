@@ -94,6 +94,9 @@ IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 ctest --output-on-failure -C %config%
 IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 
+CD %otdir%
+IF %ERRORLEVEL% NEQ 0 GOTO ERROR
+
 CALL appveyor-artifact.bat
 IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 
