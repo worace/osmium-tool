@@ -5,8 +5,6 @@ SET EL=0
 ECHO ~~~~~~ %~f0 ~~~~~~
 
 SET CUSTOM_CMAKE=cmake-3.6.2-win64-x64
-::show all available env vars
-SET
 ECHO cmake on AppVeyor
 cmake -version
 
@@ -96,6 +94,8 @@ IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 ctest --output-on-failure -C %config%
 IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 
+CALL appveyor-artifact.bat
+IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 
 GOTO DONE
 

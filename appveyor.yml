@@ -25,3 +25,6 @@ platform: x64
 build_script:
   - build-appveyor.bat
 
+artifacts:
+  - path: osmium-tool.zip
+    name: osmium-tool
