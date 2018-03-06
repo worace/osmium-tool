@@ -21,7 +21,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "export_format_json.hpp"
-
+#include <stdio.h>
+#include <iostream>
 #include <osmium/io/detail/read_write.hpp>
 
 static constexpr const std::size_t initial_buffer_size = 1024 * 1024;
@@ -130,6 +131,15 @@ void ExportFormatJSON::add_attributes(const osmium::OSMObject& object) {
         m_writer.String(options().timestamp);
         m_writer.Int64(object.timestamp().seconds_since_epoch());
     }
+    // TODO - if options full_tags output tags here
+
+    m_writer.Key("tags");
+    m_writer.StartObject(); // start tags
+    for (const auto& tag : object.tags()) {
+      m_writer.String(tag.key());
+      m_writer.String(tag.value());
+    }
+    m_writer.EndObject();
 
     if (!options().way_nodes.empty() && object.type() == osmium::item_type::way) {
         m_writer.String(options().way_nodes);
