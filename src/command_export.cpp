@@ -88,6 +88,7 @@ void CommandExport::parse_attributes(const rapidjson::Value& attributes) {
     m_options.uid       = get_attr_string(attributes, "uid");
     m_options.user      = get_attr_string(attributes, "user");
     m_options.way_nodes = get_attr_string(attributes, "way_nodes");
+    //TODO -- set options.full_tags
 }
 
 void CommandExport::parse_format_options(const rapidjson::Value& options) {
